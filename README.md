@@ -4,9 +4,9 @@ This repository contains my solutions to the SQL assessment provided by Cowrywis
 
 ---
 
-## ✅ Per-Question Explanations
+## Per-Question Explanations
 
-### 🔹 **Q1 – High-Value Customers with Multiple Products**
+### **Q1 – High-Value Customers with Multiple Products**
 
 **Objective:** Identify customers with at least one funded savings plan and one funded investment plan, and rank them by total deposits.
 
@@ -18,7 +18,7 @@ This repository contains my solutions to the SQL assessment provided by Cowrywis
 
 ---
 
-### 🔹 **Q2 – Transaction Frequency Analysis**
+### **Q2 – Transaction Frequency Analysis**
 
 **Objective:** Classify customers into frequency segments based on average transactions per month.
 
@@ -30,9 +30,9 @@ This repository contains my solutions to the SQL assessment provided by Cowrywis
 
 ---
 
-### 🔹 **Q3 – Account Inactivity Alert**
+### **Q3 – Account Inactivity Alert**
 
-**Objective:** Flag accounts (savings or investment) that haven't had inflows for over 365 days.
+**Objective:** Flag accounts (savings or investment) that haven't had inflows for over one year.
 
 **Approach:**
 - Joined `plans_plan` and `savings_savingsaccount` using `owner_id`.
@@ -42,7 +42,7 @@ This repository contains my solutions to the SQL assessment provided by Cowrywis
 
 ---
 
-### 🔹 **Q4 – Customer Lifetime Value (CLV) Estimation**
+### **Q4 – Customer Lifetime Value (CLV) Estimation**
 
 **Objective:** Estimate CLV using tenure, transaction count, and average transaction profit.
 
@@ -50,28 +50,24 @@ This repository contains my solutions to the SQL assessment provided by Cowrywis
 - Calculated `tenure_months` using `date_joined`.
 - Total transactions counted via `COUNT(s.id)`.
 - Estimated average profit: `0.1%` of `AVG(confirmed_amount)`.
-- Applied provided formula:  
+- Applied formula:  
   `(total_tx / tenure) * 12 * avg_profit`
 - Results sorted by highest CLV.
 
 ---
 
-## ⚠️ Challenges and Resolutions
+## Challenges and Resolutions
 
 | Challenge | Resolution |
 |----------|------------|
 | MySQL Workbench freezing on large exports | Switched to command line interface imports and used `LIMIT` for previews |
-| File import errors (`no database selected`) | Added `USE adashi_staging;` and set default schema manually |
-| Inconsistent or missing columns like `created_at` | Verified actual column names using `SHOW COLUMNS` |
-| Disk space errors (error code 28) | Cleared temp files and simplified large query outputs |
 | Output formatting & export lags | Used smaller result sets and gear icon export for CSVs |
 
 ---
 
-## ✅ Notes
+## Notes
 
 - All currency values are converted from **kobo to Naira** by dividing by 100.
-- Safe updates and connection timeouts were managed via Workbench settings.
 - Every `.sql` file is:
   - Single-query
   - Formatted cleanly
